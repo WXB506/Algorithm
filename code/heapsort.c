@@ -1,5 +1,6 @@
-#include "head.h"
 #include <stdio.h>
+#include "heapsort.h"
+
 
 #define _left(i)   (i<<1)
 #define _right(i)  (i<<1)+1

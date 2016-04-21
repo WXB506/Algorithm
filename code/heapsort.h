@@ -1,5 +1,5 @@
-#ifndef _HEAD_H_
-#define _HEAD_H_
+#ifndef _HEAPSORT_H_
+#define _HEADSORT_H_
 
 void max_heapify_(int *arr, const int size, int i);
 void max_heapify_loop_(int *arr, const int size, int i);
