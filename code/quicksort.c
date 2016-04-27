@@ -9,7 +9,7 @@ char dec(int a, int b)
     return a>b;
 }
 
-int partition_(int *arr, int s, int e, char (*cmp)(int , int))
+int partition_(int *arr, int s, int e, char (*cmp)(int, int))
 {
     int x;
     int i, j, t;
@@ -18,7 +18,7 @@ int partition_(int *arr, int s, int e, char (*cmp)(int , int))
     x = arr[e];
     for(j=s; j<e; j++)
     {
-        if(arr[j]<=x)
+        if((*cmp)(arr[j], x) != 0)
         {
             i = i+1;
 
@@ -33,14 +33,14 @@ int partition_(int *arr, int s, int e, char (*cmp)(int , int))
     return i+1;
 }
 
-void quicksort_(int *arr, int s, int e)
+void quicksort_(int *arr, int s, int e, char (*cmp)(int, int))
 {
     int q;
     if(s<e)
     {
-        q = partition_(arr, s, e, inc);
-        quicksort_(arr, s, q);
-        quicksort_(arr, q+1, e);
+        q = partition_(arr, s, e, cmp);
+        quicksort_(arr, s, q-1, cmp);
+        quicksort_(arr, q+1, e, cmp);
     }
 }
 
@@ -48,11 +48,17 @@ int main()
 {
     int i;
     int a[10] = {4,7,2,86,456,35,743,732,46,76};
-    quicksort_(a, 0, 10);
+    quicksort_(a, 0, 9,inc);
     for(i=0; i<10; i++)
         printf("a[%d] = %d\n", i, a[i]);
 
-    return 0;
+    printf("=====================\n");
+
+    quicksort_(a, 0, 9,dec);
+    for(i=0; i<10; i++)
+        printf("a[%d] = %d\n", i, a[i]);
+
+    return 0; 
 }
 
 
